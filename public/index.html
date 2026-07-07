@@ -160,101 +160,21 @@
   .logo-text { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.15rem; color: var(--brown); }
   .logo-text .wine { color: var(--wine); }
 
-  /* PHONE MOCK */
-  .phone-mock {
-    max-width: 300px; margin: 0 auto; background: #232323; border-radius: 40px;
-    padding: 12px; box-shadow: 0 30px 60px rgba(110,82,74,0.22); position: relative;
-  }
-  .phone-mock.small { max-width: 260px; box-shadow: 0 16px 34px rgba(110,82,74,0.16); }
-  .phone-notch {
-    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-    width: 84px; height: 20px; background: #232323; border-radius: 0 0 12px 12px; z-index: 2;
-  }
-  .phone-screen { background: #ECE5DD; border-radius: 28px; overflow: hidden; }
-
-  /* WHATSAPP CHAT MOCK */
-  .wa-header {
-    background: #075E54; color: #fff; display: flex; align-items: center; gap: 10px;
-    padding: 30px 14px 12px;
-  }
-  .wa-avatar {
-    width: 34px; height: 34px; border-radius: 50%; background: #FFEAC5;
-    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-  }
-  .wa-name { font-weight: 600; font-size: 0.9rem; }
-  .wa-status { font-size: 0.72rem; opacity: 0.75; }
-  .wa-body { padding: 14px 12px; display: flex; flex-direction: column; gap: 10px; min-height: 220px; }
-  .wa-bubble {
-    background: #DCF8C6; border-radius: 10px 10px 10px 2px; padding: 9px 11px;
-    font-size: 0.82rem; line-height: 1.45; color: #223027; max-width: 92%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.06); position: relative;
-  }
-  .wa-time {
-    display: flex; align-items: center; gap: 4px; justify-content: flex-end;
-    font-size: 0.68rem; color: #6b8a72; margin-top: 4px;
-  }
-
-  /* APP NOTIFICATION MOCK (phone screenshot) */
-  .app-screen { min-height: 220px; }
-  .app-topbar {
-    background: var(--wine); color: #fff; display: flex; justify-content: space-between;
-    align-items: center; padding: 30px 14px 10px; font-weight: 600; font-size: 0.85rem;
-  }
-  .app-topbar-sub { font-weight: 400; font-size: 0.72rem; opacity: 0.8; }
-  .app-msg { display: flex; gap: 10px; padding: 12px; border-bottom: 1px solid rgba(110,82,74,0.08); }
-  .app-msg-icon {
-    width: 34px; height: 34px; border-radius: 10px; background: var(--cream);
-    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
-  }
-  .app-msg strong { font-size: 0.82rem; color: var(--brown); }
-  .app-msg p { margin: 4px 0 0; font-size: 0.76rem; color: #8a6f64; line-height: 1.4; }
-
-  /* BROWSER MOCK (dashboard) */
-  .browser-mock {
-    background: var(--card); border-radius: 16px; overflow: hidden;
-    box-shadow: 0 16px 34px rgba(110,82,74,0.16); border: 1px solid rgba(110,82,74,0.08);
-  }
-  .browser-bar {
-    background: #F1E9DE; display: flex; align-items: center; gap: 8px; padding: 10px 14px;
-  }
-  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-  .dot.red { background: #EE6A5F; } .dot.yellow { background: #F4BE4F; } .dot.green { background: #61C454; }
-  .browser-url {
-    margin-left: 10px; background: #fff; border-radius: 999px; padding: 3px 14px;
-    font-size: 0.72rem; color: #a08c80;
-  }
-  .browser-body { display: flex; min-height: 240px; }
-  .dash-sidebar {
-    background: #FBF6F0; width: 34%; padding: 14px 10px; display: flex; flex-direction: column; gap: 8px;
-  }
-  .dash-side-item { font-size: 0.72rem; color: #8a6f64; padding: 7px 8px; border-radius: 8px; }
-  .dash-side-item.active { background: var(--wine); color: #fff; font-weight: 600; }
-  .dash-main { flex: 1; padding: 16px; }
-  .dash-greeting { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--brown); margin-bottom: 10px; }
-  .dash-stats { display: flex; gap: 8px; margin-bottom: 12px; }
-  .dash-stat {
-    flex: 1; background: var(--cream); border-radius: 10px; padding: 8px; text-align: center;
-    font-size: 0.66rem; color: #8a6f64;
-  }
-  .dash-stat span { display: block; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.86rem; color: var(--wine); }
-  .dash-week { font-size: 0.7rem; color: #a08c80; margin-bottom: 8px; }
-  .dash-row {
-    display: flex; justify-content: space-between; align-items: center; gap: 6px;
-    background: #FBF6F0; border-radius: 8px; padding: 7px 10px; font-size: 0.72rem; color: var(--brown); margin-bottom: 6px;
-  }
-  .tag-ok, .tag-pending { font-size: 0.64rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
-  .tag-ok { background: #E1F3E2; color: #3D8452; }
-  .tag-pending { background: #FBE9C9; color: #A5701F; }
+  /* HERO PHONE IMAGE */
+  .hero-phone-img { max-width: 340px; width: 100%; margin: 0 auto; display: block; }
 
   /* SHOT CARDS */
   .shot-card {
     background: var(--card); border-radius: 20px; padding: 24px;
     box-shadow: 0 20px 40px rgba(110,82,74,0.14);
   }
+  .shot-card--full { padding: 0; overflow: hidden; }
   .app-mock-label {
     text-align: center; font-weight: 600; font-size: 0.92rem; color: var(--brown);
     margin: 0 0 18px;
   }
+  .shot-phone-img { max-width: 220px; width: 100%; margin: 0 auto; display: block; }
+  .shot-dashboard-img { width: 100%; display: block; }
 </style>
 </head>
 <body>
@@ -284,23 +204,7 @@
     <p class="hero-note">Pagamento único de R$ 49,90 · acesso vitalício · garantia de 7 dias</p>
   </div>
   <div class="hero-image">
-    <div class="phone-mock">
-      <div class="phone-notch"></div>
-      <div class="phone-screen">
-        <div class="wa-header">
-          <span class="wa-avatar">👩</span>
-          <div>
-            <div class="wa-name">Ana Maria</div>
-            <div class="wa-status">online</div>
-          </div>
-        </div>
-        <div class="wa-body">
-          <div class="wa-bubble">Oi, Ana! Passando pra lembrar do sinal do seu pedido (Bolo 2kg), vencimento hoje 💰<span class="wa-time">09:03 <svg width="14" height="10" viewBox="0 0 16 11" fill="none"><path d="M1 5.5L4.5 9L10.5 1.5" stroke="#53BDEB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 5.5L9 9L15 1.5" stroke="#53BDEB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-          <div class="wa-bubble">Faltam 2 dias para a entrega do seu pedido. Já vamos preparando tudo! 🎂<span class="wa-time">09:03 <svg width="14" height="10" viewBox="0 0 16 11" fill="none"><path d="M1 5.5L4.5 9L10.5 1.5" stroke="#53BDEB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 5.5L9 9L15 1.5" stroke="#53BDEB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-          <div class="wa-bubble">Obrigada pela confiança! Qualquer dúvida, é só chamar por aqui.<span class="wa-time">09:04 <svg width="14" height="10" viewBox="0 0 16 11" fill="none"><path d="M1 5.5L4.5 9L10.5 1.5" stroke="#53BDEB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 5.5L9 9L15 1.5" stroke="#53BDEB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-        </div>
-      </div>
-    </div>
+    <img src="assets/whatsapp-mockup.png" alt="Celular mostrando conversa no WhatsApp com lembretes automáticos de pagamento e entrega enviados pelo Doce Gestão" class="hero-phone-img">
   </div>
 </section>
 
@@ -365,49 +269,10 @@
   <div class="shots">
     <div class="shot-card">
       <p class="app-mock-label">Lembretes automáticos no WhatsApp</p>
-      <div class="phone-mock small">
-        <div class="phone-notch"></div>
-        <div class="phone-screen app-screen">
-          <div class="app-topbar"><span>Doce Gestão</span><span class="app-topbar-sub">Hoje</span></div>
-          <div class="app-msg">
-            <div class="app-msg-icon">💰</div>
-            <div><strong>Lembrete de pagamento</strong><p>Olá, Ana! Passando para lembrar que o restante do seu pedido vence amanhã (08/07).</p></div>
-          </div>
-          <div class="app-msg">
-            <div class="app-msg-icon">🚚</div>
-            <div><strong>Lembrete de entrega</strong><p>Seu pedido está com entrega agendada para amanhã (08/07) a partir das 14h.</p></div>
-          </div>
-        </div>
-      </div>
+      <img src="assets/whatsapp-mockup.png" alt="Celular mostrando lembretes automáticos de pagamento e entrega no WhatsApp" class="shot-phone-img">
     </div>
-    <div class="shot-card">
-      <p class="app-mock-label">Pedidos, clientes e financeiro sem complicação</p>
-      <div class="browser-mock">
-        <div class="browser-bar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="browser-url">app.docegestao.com.br</span>
-        </div>
-        <div class="browser-body">
-          <div class="dash-sidebar">
-            <div class="dash-side-item active">📅 Agenda</div>
-            <div class="dash-side-item">🧁 Pedidos</div>
-            <div class="dash-side-item">🔔 Cobranças</div>
-            <div class="dash-side-item">💰 Financeiro</div>
-            <div class="dash-side-item">👥 Clientes</div>
-          </div>
-          <div class="dash-main">
-            <div class="dash-greeting">Bom dia, Vitória! 👋</div>
-            <div class="dash-stats">
-              <div class="dash-stat"><span>2</span>Entregas hoje</div>
-              <div class="dash-stat"><span>R$ 134,90</span>Recebido</div>
-              <div class="dash-stat"><span>R$ 60,00</span>A receber</div>
-            </div>
-            <div class="dash-week">Semana de 7 a 13 de julho</div>
-            <div class="dash-row"><span>Ana Maria</span><span>Bolo 2kg</span><span class="tag-ok">Pago</span></div>
-            <div class="dash-row"><span>Camila Souza</span><span>30 docinhos</span><span class="tag-pending">Pendente</span></div>
-          </div>
-        </div>
-      </div>
+    <div class="shot-card shot-card--full">
+      <img src="assets/dashboard-mockup.jpg" alt="Painel do sistema Doce Gestão mostrando a agenda semanal de entregas e indicadores do negócio" class="shot-dashboard-img">
     </div>
   </div>
 </section>
