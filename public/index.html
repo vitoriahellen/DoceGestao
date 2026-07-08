@@ -7,30 +7,56 @@
 <meta name="description" content="Lembretes automáticos de pagamento e entrega no WhatsApp, agenda e organização de pedidos. Pagamento único de R$ 69,90.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Fredoka:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --brown: #6E524A;
-    --terracotta: #DC966C;
     --wine: #9F3140;
+    --terracotta: #DC966C;
     --salmon: #FFA68E;
     --cream: #FFEAC5;
-    --page-bg: #FFFBF3;
+    --brown: #6E524A;
+    --ink-soft: #8a6f64;
+    --paper: #FFFBF3;
+    --paper-deep: #F7EAD8;
     --card: #FFFFFF;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   html, body {
-    margin: 0; padding: 0;
-    background: var(--page-bg);
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--paper);
     color: var(--brown);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Karla', sans-serif;
   }
-  h1, h2, h3, .display { font-family: 'Fredoka', sans-serif; font-weight: 600; margin: 0; }
-  a { text-decoration: none; }
+  h1, h2, h3 { font-family: 'Fredoka', sans-serif; font-weight: 600; margin: 0; text-wrap: balance; }
+  a { text-decoration: none; color: inherit; }
   img { max-width: 100%; display: block; }
+  .mono { font-family: 'Courier Prime', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  ::selection { background: var(--salmon); color: #3a1a12; }
+  a:focus-visible, summary:focus-visible, button:focus-visible {
+    outline: 2px solid var(--wine); outline-offset: 3px; border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
 
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* STAMPED LABEL SYSTEM (ticket tags, eyebrows) */
+  .ticket-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--cream); color: var(--wine);
+    font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 0.76rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 7px 7px 0 0;
+    border-bottom: 2px dashed rgba(159,49,64,0.4);
+  }
+  .eyebrow-center {
+    font-family: 'Courier Prime', monospace; color: var(--wine); font-weight: 700;
+    font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 12px; display: block;
+  }
 
   /* HEADER */
   header {
@@ -43,111 +69,6 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 14px 24px; max-width: 1100px; margin: 0 auto;
   }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 1rem;
-    background: var(--wine); color: #fff; border: none; cursor: pointer;
-    box-shadow: 0 10px 24px rgba(159,49,64,0.28);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(159,49,64,0.34); }
-  .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
-  .btn-outline { background: transparent; color: var(--wine); border: 2px solid var(--wine); box-shadow: none; }
-
-  /* HERO */
-  .hero {
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center;
-    padding: 70px 0 60px;
-  }
-  .hero .eyebrow {
-    display: inline-block; background: var(--cream); color: var(--wine);
-    font-weight: 600; font-size: 0.8rem; letter-spacing: 0.04em;
-    padding: 6px 16px; border-radius: 999px; margin-bottom: 18px;
-  }
-  .hero h1 { font-size: 2.6rem; line-height: 1.15; margin-bottom: 18px; }
-  .hero h1 span { color: var(--wine); }
-  .hero p.lede { font-size: 1.08rem; color: #7d6459; line-height: 1.6; margin-bottom: 28px; max-width: 480px; }
-  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-  .hero-note { margin-top: 14px; font-size: 0.85rem; color: #a08c80; }
-  .hero-image { position: relative; }
-
-  /* SECTIONS */
-  section { padding: 70px 0; }
-  .section-head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
-  .eyebrow-center {
-    color: var(--wine); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.1em;
-    text-transform: uppercase; margin-bottom: 10px; display:block;
-  }
-  .section-head h2 { font-size: 2rem; margin-bottom: 12px; }
-  .section-head p { color: #7d6459; font-size: 1rem; line-height: 1.6; }
-
-  /* DOR */
-  .dor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .dor-card {
-    background: var(--card); border: 1px solid rgba(110,82,74,0.08);
-    border-radius: 18px; padding: 28px 24px; text-align: center;
-    box-shadow: 0 10px 26px rgba(110,82,74,0.06);
-  }
-  .dor-card .emoji { font-size: 2rem; margin-bottom: 12px; }
-  .dor-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-  .dor-card p { font-size: 0.9rem; color: #8a6f64; line-height: 1.5; margin: 0; }
-
-  /* FEATURES */
-  .feat-bg { background: var(--cream); }
-  .feat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .feat-card {
-    background: var(--card); border-radius: 20px; padding: 30px;
-    display: flex; gap: 18px; align-items: flex-start;
-    box-shadow: 0 10px 26px rgba(110,82,74,0.08);
-  }
-  .feat-card .emoji { font-size: 1.8rem; flex-shrink: 0; background: var(--cream); width: 56px; height: 56px; border-radius: 14px; display:flex; align-items:center; justify-content:center; }
-  .feat-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
-  .feat-card p { font-size: 0.92rem; color: #7d6459; line-height: 1.55; margin: 0; }
-
-  /* SCREENSHOTS */
-  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-
-  /* PRICING */
-  .price-card {
-    max-width: 520px; margin: 0 auto; background: var(--wine); color: #fff;
-    border-radius: 28px; padding: 46px 40px; text-align: center;
-    box-shadow: 0 30px 60px rgba(159,49,64,0.3);
-  }
-  .price-card .tag { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; margin-bottom: 10px; display:block; }
-  .price-card .price { font-size: 3.4rem; font-family: 'Fredoka', sans-serif; font-weight: 700; margin-bottom: 6px; }
-  .price-card .price-sub { opacity: 0.85; font-size: 0.95rem; margin-bottom: 26px; }
-  .price-list { list-style: none; padding: 0; margin: 0 0 30px; text-align: left; display: inline-block; }
-  .price-list li { padding: 8px 0; font-size: 0.95rem; display: flex; gap: 10px; align-items: flex-start; }
-  .price-card .btn { background: #fff; color: var(--wine); box-shadow: 0 10px 26px rgba(0,0,0,0.15); width: 100%; }
-  .price-card .btn:hover { background: var(--cream); }
-  .guarantee { margin-top: 20px; font-size: 0.82rem; opacity: 0.85; }
-
-  /* FAQ */
-  details {
-    background: var(--card); border: 1px solid rgba(110,82,74,0.1);
-    border-radius: 14px; padding: 18px 22px; margin-bottom: 12px;
-  }
-  summary { font-weight: 600; cursor: pointer; font-size: 0.98rem; }
-  details p { margin: 12px 0 0; color: #7d6459; font-size: 0.92rem; line-height: 1.55; }
-
-  /* FOOTER CTA */
-  .cta-final {
-    background: var(--brown); color: var(--cream); text-align: center; padding: 70px 24px;
-  }
-  .cta-final h2 { color: #fff; font-size: 2rem; margin-bottom: 14px; }
-  .cta-final p { opacity: 0.85; margin-bottom: 28px; }
-  .cta-final .btn { background: var(--wine); }
-
-  footer { text-align: center; padding: 30px 24px; font-size: 0.82rem; color: #a08c80; }
-
-  @media (max-width: 860px) {
-    .hero { grid-template-columns: 1fr; padding-top: 40px; }
-    .hero h1 { font-size: 2rem; }
-    .dor-grid, .feat-grid, .shots { grid-template-columns: 1fr; }
-    section { padding: 50px 0; }
-  }
-
-  /* LOGO */
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-badge {
     width: 38px; height: 38px; border-radius: 11px; background: var(--wine);
@@ -155,26 +76,173 @@
   }
   .logo-dot {
     position: absolute; top: -4px; right: -4px; width: 12px; height: 12px;
-    border-radius: 50%; background: var(--salmon); border: 2px solid var(--page-bg);
+    border-radius: 50%; background: var(--salmon); border: 2px solid var(--paper);
   }
   .logo-text { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.15rem; color: var(--brown); }
   .logo-text .wine { color: var(--wine); }
 
-  /* HERO PHONE IMAGE */
-  .hero-phone-img { max-width: 640px; width: 100%; margin: 0 auto; display: block; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: 1rem;
+    font-family: 'Karla', sans-serif;
+    background: var(--wine); color: #fff; border: none; cursor: pointer;
+    box-shadow: 0 10px 24px rgba(159,49,64,0.28);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(159,49,64,0.34); }
+  .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
+  .btn-outline { background: transparent; color: var(--wine); border: 2px solid var(--wine); box-shadow: none; }
+  .btn-block { width: 100%; }
+  .ico { flex-shrink: 0; }
 
-  /* SHOT CARDS */
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center;
+    padding: 64px 0 60px;
+  }
+  .hero h1 { font-size: 2.6rem; line-height: 1.15; margin: 20px 0 18px; }
+  .hero h1 span { color: var(--wine); }
+  .hero p.lede { font-size: 1.08rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 28px; max-width: 480px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-note { margin-top: 16px; font-size: 0.85rem; color: var(--ink-soft); }
+
+  .hero-image { position: relative; display: flex; justify-content: center; }
+  .hero-image-backdrop {
+    position: absolute; width: 76%; max-width: 360px; aspect-ratio: 1 / 1;
+    background: var(--cream); border-radius: 36px; transform: rotate(-7deg);
+    top: 4%; z-index: 0;
+  }
+  .hero-phone-img { position: relative; z-index: 1; max-width: 460px; width: 100%; margin: 0 auto; display: block; }
+
+  /* SECTIONS */
+  section { padding: 70px 0; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+  .section-head h2 { font-size: 2rem; margin-bottom: 12px; }
+  .section-head p { color: var(--ink-soft); font-size: 1rem; line-height: 1.6; }
+
+  /* DOR — torn ticket stubs */
+  #dor { background: var(--paper-deep); }
+  .dor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 20px; }
+  .dor-card {
+    position: relative; background: var(--card);
+    border-top: 3px dashed rgba(159,49,64,0.3);
+    border-radius: 4px 4px 18px 18px; padding: 30px 24px 26px; text-align: center;
+    box-shadow: 0 10px 26px rgba(110,82,74,0.08);
+  }
+  .dor-card::before, .dor-card::after {
+    content: ""; position: absolute; top: -8px; width: 15px; height: 15px;
+    border-radius: 50%; background: var(--paper-deep);
+  }
+  .dor-card::before { left: -1px; }
+  .dor-card::after { right: -1px; }
+  .dor-icon {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--cream); color: var(--wine);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+  }
+  .dor-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .dor-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+
+  /* FEATURES — one comanda, itemized */
+  #funcionalidades { background: var(--cream); }
+  .feat-list {
+    background: var(--card); border-radius: 24px; overflow: hidden;
+    box-shadow: 0 20px 40px rgba(110,82,74,0.1);
+  }
+  .feat-row { display: flex; gap: 18px; align-items: flex-start; padding: 26px 30px; }
+  .feat-row + .feat-row { border-top: 2px dashed rgba(110,82,74,0.14); }
+  .feat-icon {
+    width: 46px; height: 46px; border-radius: 12px; background: var(--cream); color: var(--wine);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .feat-row h3 { font-size: 1.08rem; margin-bottom: 4px; }
+  .feat-row p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; line-height: 1.55; }
+
+  /* SCREENSHOTS */
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
   .shot-card {
-    background: var(--card); border-radius: 20px; padding: 24px;
-    box-shadow: 0 20px 40px rgba(110,82,74,0.14);
+    background: var(--card); border: 2px dashed rgba(159,49,64,0.18); border-radius: 20px; padding: 24px;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .shot-card--full { padding: 0; overflow: hidden; }
-  .app-mock-label {
-    text-align: center; font-weight: 600; font-size: 0.92rem; color: var(--brown);
-    margin: 0 0 18px;
-  }
-  .shot-phone-img { max-width: 620px; width: 100%; margin: 0 auto; display: block; }
+  .shot-card--full { padding: 0; border: none; overflow: hidden; box-shadow: 0 20px 40px rgba(110,82,74,0.14); }
+  .app-mock-label { text-align: center; font-weight: 700; font-size: 0.94rem; color: var(--brown); margin: 0 0 18px; }
+  .shot-phone-img { max-width: 320px; width: 100%; margin: 0 auto; display: block; }
   .shot-dashboard-img { width: 100%; display: block; }
+
+  /* PRICING TICKET */
+  #preco { background: var(--paper-deep); }
+  .ticket-wrap { position: relative; width: 100%; max-width: 480px; margin: 8px auto 0; }
+  .ticket-wrap::before {
+    content: ""; position: absolute; top: 12px; left: 16px; right: -10px; bottom: -10px;
+    background: var(--terracotta); border-radius: 26px; transform: rotate(2.2deg); z-index: 0;
+  }
+  .ticket {
+    position: relative; z-index: 1; background: var(--card); border-radius: 26px;
+    overflow: hidden; padding: 40px 38px 36px; text-align: center;
+    box-shadow: 0 30px 60px rgba(110,82,74,0.22); transform: rotate(-1deg);
+  }
+  .ticket::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px;
+    background-color: var(--card);
+    background-image: radial-gradient(circle 7px at 14px 0, var(--paper-deep) 99%, transparent 100%);
+    background-repeat: repeat-x; background-size: 28px 18px;
+  }
+  .ticket .ticket-tag { margin-bottom: 8px; }
+  .ticket-price { font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 3rem; color: var(--wine); margin: 14px 0 4px; font-variant-numeric: tabular-nums; }
+  .ticket-sub { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 24px; }
+  .ticket-list { list-style: none; padding: 0; margin: 0 0 30px; text-align: left; }
+  .ticket-list li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 4px; font-size: 0.95rem; }
+  .ticket-list li + li { border-top: 1px dashed rgba(110,82,74,0.18); }
+  .check-ico { color: var(--wine); flex-shrink: 0; margin-top: 2px; }
+  .ticket-guarantee {
+    margin-top: 20px; font-size: 0.85rem; color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .ticket-guarantee .ico { color: var(--wine); }
+
+  /* FAQ */
+  details {
+    background: var(--card); border: 2px dashed rgba(110,82,74,0.16);
+    border-radius: 16px; padding: 18px 22px; margin-bottom: 14px;
+  }
+  summary {
+    list-style: none; cursor: pointer; font-weight: 700; font-size: 0.98rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+"; font-family: 'Courier Prime', monospace; font-weight: 700;
+    font-size: 1.2rem; color: var(--wine); flex-shrink: 0;
+  }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 14px 0 0; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.55; }
+
+  /* FOOTER CTA */
+  .cta-final {
+    background: var(--brown); color: var(--cream); text-align: center;
+    padding: 76px 24px 70px; border-top: 3px dashed rgba(255,234,197,0.35);
+  }
+  .stamp {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 2px solid var(--salmon); color: var(--salmon);
+    font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 0.76rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 7px 16px; border-radius: 999px; transform: rotate(-3deg); margin-bottom: 22px;
+  }
+  .cta-final h2 { color: #fff; font-size: 2rem; margin-bottom: 14px; }
+  .cta-final p { opacity: 0.85; margin-bottom: 28px; }
+  .cta-final .btn { background: var(--wine); }
+
+  footer { background: var(--paper-deep); text-align: center; padding: 30px 24px; font-size: 0.82rem; color: var(--ink-soft); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 40px; }
+    .hero-image { order: -1; }
+    .hero h1 { font-size: 2rem; }
+    .dor-grid, .shots { grid-template-columns: 1fr; }
+    .feat-row { padding: 22px; }
+    section { padding: 50px 0; }
+    .ticket { padding: 36px 24px 30px; }
+  }
 </style>
 </head>
 <body>
@@ -194,16 +262,20 @@
 
 <section class="hero wrap">
   <div>
-    <span class="eyebrow">Sistema para confeiteiras</span>
+    <span class="ticket-tag">Sistema para confeiteiras</span>
     <h1>Enquanto você decora o bolo,<br><span>o sistema cobra por você</span></h1>
     <p class="lede">Lembretes automáticos de pagamento e entrega direto no WhatsApp da sua cliente. Pedidos, agenda e financeiro organizados num só lugar.</p>
     <div class="hero-ctas">
-      <a class="btn" href="https://wa.me/5519920051803?text=Boa%20tarde%21%20Gostaria%20de%20solicitar%20o%20teste%20gratuito%20do%20sistema%20Doce%20Gest%C3%A3o." target="_blank" rel="noopener">💬 Quero testar grátis</a>
+      <a class="btn" href="https://wa.me/5519920051803?text=Boa%20tarde%21%20Gostaria%20de%20solicitar%20o%20teste%20gratuito%20do%20sistema%20Doce%20Gest%C3%A3o." target="_blank" rel="noopener">
+        <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19l1.2-3.6A8 8 0 1112 20a8.1 8.1 0 01-3.4-.8L4 19z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Quero testar grátis
+      </a>
       <a class="btn btn-outline" href="#preco">Ver preço</a>
     </div>
-    <p class="hero-note">Pagamento único de R$ 69,90 · acesso vitalício · garantia de 7 dias</p>
+    <p class="hero-note">Pagamento único de <span class="mono">R$ 69,90</span> · acesso vitalício · garantia de 7 dias</p>
   </div>
   <div class="hero-image">
+    <div class="hero-image-backdrop" aria-hidden="true"></div>
     <img src="assets/whatsapp-mockup.png" alt="Celular mostrando conversa no WhatsApp com lembretes automáticos de pagamento e entrega enviados pelo Doce Gestão" class="hero-phone-img">
   </div>
 </section>
@@ -216,45 +288,59 @@
   </div>
   <div class="dor-grid">
     <div class="dor-card">
-      <div class="emoji">😅</div>
+      <span class="dor-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 9v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 3h6M6 5l1.5 1.5M18 5l-1.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
       <h3>Esqueceu de cobrar</h3>
       <p>O sinal venceu e ninguém lembrou de avisar a cliente.</p>
     </div>
     <div class="dor-card">
-      <div class="emoji">📓</div>
+      <span class="dor-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="3.5" width="14" height="17" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
       <h3>Tudo espalhado</h3>
       <p>Pedido no caderno, pagamento no WhatsApp, cliente na memória.</p>
     </div>
     <div class="dor-card">
-      <div class="emoji">😰</div>
+      <span class="dor-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="0.9" fill="currentColor"/></svg>
+      </span>
       <h3>Susto de entrega</h3>
       <p>Descobrir em cima da hora que uma encomenda ficou pra trás.</p>
     </div>
   </div>
 </section>
 
-<section class="feat-bg" id="funcionalidades">
+<section id="funcionalidades">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow-center">O que o sistema faz</span>
       <h2>Cobra, lembra e organiza por você</h2>
       <p>Você cadastra o pedido uma vez. O resto o Doce Gestão faz sozinho.</p>
     </div>
-    <div class="feat-grid">
-      <div class="feat-card">
-        <div class="emoji">🔔</div>
+    <div class="feat-list">
+      <div class="feat-row">
+        <span class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 5a5 5 0 00-5 5v3.2c0 .6-.2 1.2-.6 1.7L5 17h14l-1.4-2.1c-.4-.5-.6-1.1-.6-1.7V10a5 5 0 00-5-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
         <div><h3>Cobrança automática</h3><p>Lembrete de sinal e restante direto no WhatsApp da cliente, no tom certo, sem você precisar lembrar.</p></div>
       </div>
-      <div class="feat-card">
-        <div class="emoji">⏰</div>
+      <div class="feat-row">
+        <span class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4.5 7.5L12 12l7.5-4.5M12 12v9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </span>
         <div><h3>Aviso de entrega</h3><p>Alerta automático alguns dias antes de cada entrega, com a antecedência que você escolher.</p></div>
       </div>
-      <div class="feat-card">
-        <div class="emoji">📅</div>
+      <div class="feat-row">
+        <span class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5.5" width="16" height="15" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M4 10h16M8 3.5v4M16 3.5v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
         <div><h3>Agenda inteligente</h3><p>Visão de semana e mês com tudo o que tem pra entregar, sem folhear caderno.</p></div>
       </div>
-      <div class="feat-card">
-        <div class="emoji">🧁</div>
+      <div class="feat-row">
+        <span class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 10h8l1.2 8.5a2 2 0 01-2 2.5H8.8a2 2 0 01-2-2.5L8 10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 10c-.7-1.7.2-3 1.2-3.6C9.6 5 10 3.2 12 3c1.8.3 1.8 2 1.2 2.8C14.6 6.4 15.6 8 15 10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        </span>
         <div><h3>Pedidos organizados</h3><p>Cliente, itens, valores e status de pagamento num cadastro simples.</p></div>
       </div>
     </div>
@@ -283,19 +369,42 @@
       <span class="eyebrow-center">Investimento</span>
       <h2>Um preço único, sem mensalidade</h2>
     </div>
-    <div class="price-card">
-      <span class="tag">Pagamento único</span>
-      <div class="price">R$ 69,90</div>
-      <div class="price-sub">acesso vitalício, sem letra miúda</div>
-      <ul class="price-list">
-        <li>✅ Cobrança automática de sinal e restante</li>
-        <li>✅ Aviso automático de prazo de entrega</li>
-        <li>✅ Cadastro de pedidos, clientes e pagamentos</li>
-        <li>✅ Agenda em visão semana e mês</li>
-        <li>✅ Login de administradora + equipe</li>
-      </ul>
-      <a class="btn" href="https://wa.me/5519920051803?text=Boa%20tarde%21%20Gostaria%20de%20solicitar%20o%20teste%20gratuito%20do%20sistema%20Doce%20Gest%C3%A3o." target="_blank" rel="noopener">💬 Quero testar grátis</a>
-      <p class="guarantee">🛡️ 7 dias de garantia incondicional</p>
+    <div class="ticket-wrap">
+      <div class="ticket">
+        <span class="ticket-tag">Pagamento único</span>
+        <div class="ticket-price mono">R$ 69,90</div>
+        <div class="ticket-sub">acesso vitalício, sem letra miúda</div>
+        <ul class="ticket-list">
+          <li>
+            <span class="check-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9 17.5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Cobrança automática de sinal e restante
+          </li>
+          <li>
+            <span class="check-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9 17.5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Aviso automático de prazo de entrega
+          </li>
+          <li>
+            <span class="check-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9 17.5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Cadastro de pedidos, clientes e pagamentos
+          </li>
+          <li>
+            <span class="check-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9 17.5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Agenda em visão semana e mês
+          </li>
+          <li>
+            <span class="check-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9 17.5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Login de administradora + equipe
+          </li>
+        </ul>
+        <a class="btn btn-block" href="https://wa.me/5519920051803?text=Boa%20tarde%21%20Gostaria%20de%20solicitar%20o%20teste%20gratuito%20do%20sistema%20Doce%20Gest%C3%A3o." target="_blank" rel="noopener">
+          <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19l1.2-3.6A8 8 0 1112 20a8.1 8.1 0 01-3.4-.8L4 19z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          Quero testar grátis
+        </a>
+        <p class="ticket-guarantee">
+          <span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-9.5-9.4C1.2 7 3 4 6.3 4c2 0 3.4 1 5.7 3.4C14.3 5 15.7 4 17.7 4 21 4 22.8 7 21.5 10.6 19.5 15.4 12 20 12 20z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+          7 dias de garantia incondicional
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -324,9 +433,18 @@
 </section>
 
 <div class="cta-final">
-  <h2>Chega de ser você a lembrar de cobrar.</h2>
-  <p>Garanta o seu Doce Gestão agora e teste sem compromisso.</p>
-  <a class="btn" href="https://wa.me/5519920051803?text=Boa%20tarde%21%20Gostaria%20de%20solicitar%20o%20teste%20gratuito%20do%20sistema%20Doce%20Gest%C3%A3o." target="_blank" rel="noopener">💬 Falar no WhatsApp agora</a>
+  <div class="wrap">
+    <span class="stamp">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-9.5-9.4C1.2 7 3 4 6.3 4c2 0 3.4 1 5.7 3.4C14.3 5 15.7 4 17.7 4 21 4 22.8 7 21.5 10.6 19.5 15.4 12 20 12 20z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      Feito para confeiteiras
+    </span>
+    <h2>Chega de ser você a lembrar de cobrar.</h2>
+    <p>Garanta o seu Doce Gestão agora e teste sem compromisso.</p>
+    <a class="btn" href="https://wa.me/5519920051803?text=Boa%20tarde%21%20Gostaria%20de%20solicitar%20o%20teste%20gratuito%20do%20sistema%20Doce%20Gest%C3%A3o." target="_blank" rel="noopener">
+      <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19l1.2-3.6A8 8 0 1112 20a8.1 8.1 0 01-3.4-.8L4 19z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      Falar no WhatsApp agora
+    </a>
+  </div>
 </div>
 
 <footer>
