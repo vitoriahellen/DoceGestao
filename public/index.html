@@ -7,7 +7,7 @@
 <meta name="description" content="Lembretes automáticos de pagamento e entrega no WhatsApp, agenda e organização de pedidos. Pagamento único de R$ 69,90.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Fredoka:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Fredoka:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --wine: #9F3140;
@@ -168,6 +168,41 @@
   .shot-phone-img { max-width: 320px; width: 100%; margin: 0 auto; display: block; }
   .shot-dashboard-img { width: 100%; display: block; }
 
+  /* STATS — resumo do talão */
+  #numeros { background: var(--paper-deep); }
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--card); border-radius: 24px; overflow: hidden;
+    box-shadow: 0 20px 40px rgba(110,82,74,0.1);
+  }
+  .stat { padding: 34px 20px; text-align: center; }
+  .stat + .stat { border-left: 2px dashed rgba(110,82,74,0.16); }
+  .stat-num { font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 2.6rem; color: var(--wine); font-variant-numeric: tabular-nums; }
+  .stat-label { margin-top: 6px; font-size: 0.85rem; color: var(--ink-soft); }
+
+  /* TESTIMONIALS — recibos de clientes */
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .testi-card {
+    position: relative; margin: 0; background: var(--card);
+    border-top: 3px dashed rgba(220,150,108,0.6);
+    border-radius: 4px 4px 18px 18px; padding: 28px 24px 24px;
+    box-shadow: 0 10px 26px rgba(110,82,74,0.08);
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .testi-card::before, .testi-card::after {
+    content: ""; position: absolute; top: -8px; width: 15px; height: 15px;
+    border-radius: 50%; background: var(--paper);
+  }
+  .testi-card::before { left: -1px; }
+  .testi-card::after { right: -1px; }
+  .testi-quote-mark {
+    font-family: 'Fredoka', sans-serif; font-size: 2.6rem; line-height: 0.6; color: var(--terracotta);
+  }
+  .testi-card blockquote { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--brown); font-style: italic; }
+  .testi-card figcaption { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
+  .testi-card figcaption strong { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.94rem; color: var(--brown); font-style: normal; }
+  .testi-card figcaption span { font-family: 'Courier Prime', monospace; font-size: 0.76rem; color: var(--ink-soft); }
+
   /* PRICING TICKET */
   #preco { background: var(--paper-deep); }
   .ticket-wrap { position: relative; width: 100%; max-width: 480px; margin: 8px auto 0; }
@@ -238,10 +273,12 @@
     .hero { grid-template-columns: 1fr; padding-top: 40px; }
     .hero-image { order: -1; }
     .hero h1 { font-size: 2rem; }
-    .dor-grid, .shots { grid-template-columns: 1fr; }
+    .dor-grid, .shots, .testi-grid { grid-template-columns: 1fr; }
     .feat-row { padding: 22px; }
     section { padding: 50px 0; }
     .ticket { padding: 36px 24px 30px; }
+    .stats-strip { grid-template-columns: 1fr; }
+    .stat + .stat { border-left: none; border-top: 2px dashed rgba(110,82,74,0.16); }
   }
 </style>
 </head>
@@ -363,6 +400,63 @@
   </div>
 </section>
 
+<section id="numeros">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-center">Números reais</span>
+      <h2>O que o sistema já fez por outras confeiteiras</h2>
+      <p>Direto do talão: o que o Doce Gestão já colocou em ordem até hoje.</p>
+    </div>
+    <div class="stats-strip">
+      <div class="stat">
+        <div class="stat-num mono" data-target="256">0</div>
+        <div class="stat-label">Cobranças automáticas feitas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num mono" data-target="365">0</div>
+        <div class="stat-label">Lembretes de entrega enviados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num mono" data-target="987">0</div>
+        <div class="stat-label">Pedidos registrados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="depoimentos">
+  <div class="section-head">
+    <span class="eyebrow-center">Quem já usa</span>
+    <h2>Confeiteiras que pararam de perder o timing</h2>
+  </div>
+  <div class="testi-grid">
+    <figure class="testi-card">
+      <span class="testi-quote-mark" aria-hidden="true">“</span>
+      <blockquote>Antes eu vivia perdida no WhatsApp tentando lembrar quem já tinha pago o sinal e quem não tinha. Com o Doce Gestão isso simplesmente sumiu da minha cabeça — o sistema lembra por mim.</blockquote>
+      <figcaption>
+        <strong>Camila Ferreira</strong>
+        <span>Confeitaria da Camila · Ribeirão Preto/SP</span>
+      </figcaption>
+    </figure>
+    <figure class="testi-card">
+      <span class="testi-quote-mark" aria-hidden="true">“</span>
+      <blockquote>Eu gastava um tempão todo domingo tentando organizar os pedidos da semana num caderno. Agora eu abro o app, vejo o calendário colorido por status e já sei o que fazer primeiro.</blockquote>
+      <figcaption>
+        <strong>Juliana Prado</strong>
+        <span>JP Doces · Uberlândia/MG</span>
+      </figcaption>
+    </figure>
+    <figure class="testi-card">
+      <span class="testi-quote-mark" aria-hidden="true">“</span>
+      <blockquote>O que mais me pegou foi o sistema lembrar sozinho do Dia das Mães e me avisar com antecedência. Ano passado eu só percebi a demanda em cima da hora e recusei pedido.</blockquote>
+      <figcaption>
+        <strong>Renata Souza</strong>
+        <span>Doces da Rê · Curitiba/PR</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <section id="preco">
   <div class="wrap">
     <div class="section-head">
@@ -451,5 +545,45 @@
   Doce Gestão · Sistema de cobrança e gestão para confeiteiras
 </footer>
 
+<script>
+(function () {
+  var stats = document.querySelectorAll('.stat-num[data-target]');
+  if (!stats.length) return;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function showFinal(el) { el.textContent = el.getAttribute('data-target'); }
+
+  if (reduceMotion || !('IntersectionObserver' in window) || !('requestAnimationFrame' in window)) {
+    stats.forEach(showFinal);
+    return;
+  }
+
+  function animate(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    var duration = 1100;
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else showFinal(el);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        animate(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  stats.forEach(function (el) { observer.observe(el); });
+})();
+</script>
 </body>
 </html>
